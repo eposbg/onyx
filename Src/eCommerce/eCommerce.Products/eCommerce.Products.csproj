@@ -15,4 +15,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eCommerce.Products.Application\eCommerce.Products.Application.csproj" />
+    <ProjectReference Include="..\eCommerce.Products.Domain\eCommerce.Products.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

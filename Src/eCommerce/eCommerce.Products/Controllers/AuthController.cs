@@ -1,10 +1,6 @@
-﻿using eCommerce.Products.Models.Auth;
+﻿using eCommerce.Products.Application.Services.Authentication;
+using eCommerce.Products.Domain.Entries;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace eCommerce.Products.Controllers
 {
@@ -12,30 +8,24 @@ namespace eCommerce.Products.Controllers
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly JwtSettings _jwtSettings;
+        private readonly IAuthService _authService;
 
-        public AuthController(IOptions<JwtSettings> jwtSettings)
+        public AuthController( IAuthService authService)
         {
-            _jwtSettings=jwtSettings.Value;
+            _authService=authService;
         }
 
         [HttpPost]
         [Route("GetToken")]
-        public IActionResult GetToken()
+        public async Task<IActionResult> GetToken([FromBody] User user)
         {
-            var claims = new[] { new Claim(ClaimTypes.Name, "testuser") };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = await _authService.GetTokenAsync(
+                user.Username,
+                user.Password,
+                Request.HttpContext.RequestAborted);
 
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
-                signingCredentials: creds);
+            return Ok(new { token });
 
-            return Ok(new
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token)
-            });
         }
     }
 }

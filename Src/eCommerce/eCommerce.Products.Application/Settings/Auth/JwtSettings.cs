@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Products.Models.Auth
+﻿namespace eCommerce.Products.Application.Settings.Auth
 {
     public class JwtSettings
     {

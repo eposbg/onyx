@@ -1,12 +1,17 @@
-﻿using eCommerce.Products.Models.Auth;
+﻿using eCommerce.Products.Application.Services.Authentication;
+using eCommerce.Products.Application.Settings.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
-var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+
+var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
+builder.Services.Configure<JwtSettings>(jwtSettingsSection);
+builder.Services.AddSingleton(jwtSettingsSection.Get<JwtSettings>()!);
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -19,9 +24,10 @@ builder.Services
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtSettings!.SecretKey))
+                Encoding.UTF8.GetBytes(jwtSettingsSection.Get<JwtSettings>()!.SecretKey))
         };
     });
+
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
@@ -80,3 +86,4 @@ app.MapControllers();
 app.MapHealthChecks("/health");
 
 app.Run();
+
