@@ -8,10 +8,15 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <RootNamespace>eCommerce.Products.Application.Tests</RootNamespace>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="FluentAssertions" Version="8.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.15" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
@@ -19,6 +24,11 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\eCommerce.Api\eCommerce.Api.csproj" />
+    <ProjectReference Include="..\..\eCommerce.Products.Infrastructure\eCommerce.Products.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
