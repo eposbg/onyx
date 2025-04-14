@@ -29,4 +29,8 @@
     <ProjectReference Include="..\..\eCommerce.Products.Domain\eCommerce.Products.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
 </Project>
