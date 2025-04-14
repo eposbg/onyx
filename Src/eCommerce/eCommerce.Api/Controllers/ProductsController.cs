@@ -14,7 +14,15 @@ public class ProductsController(IProductService productService) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var products = await productService.GetAllAsync(HttpContext.RequestAborted);
+        var products = await productService.GetAllAsync(Request.HttpContext.RequestAborted);
+        return Ok(products);
+    }
+    
+    [Route("color/{color}")]
+    [HttpGet]
+    public async Task<IActionResult> GetByColor(string color)
+    {
+        var products = await productService.GetByColorAsync(color, Request.HttpContext.RequestAborted);
         return Ok(products);
     }
 }

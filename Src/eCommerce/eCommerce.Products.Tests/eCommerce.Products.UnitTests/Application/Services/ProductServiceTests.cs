@@ -50,7 +50,7 @@ public class ProductServiceTests
         _repoMock.Setup(r => r.GetAll()).Returns(products);
 
         // Act
-        var result = await _service.GetProductsByColor(color, CancellationToken.None);
+        var result = await _service.GetByColorAsync(color, CancellationToken.None);
 
         // Assert
         result.Should().OnlyContain(p => p.Color == "Red");

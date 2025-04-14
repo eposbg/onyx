@@ -23,7 +23,7 @@ public class ProductService: IProductService
         });
     }
 
-    public async Task<IEnumerable<ProductDto>> GetProductsByColor(string color, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ProductDto>> GetByColorAsync(string color, CancellationToken cancellationToken)
     {
         var allProducts = await _productRepository
             .GetAll()
