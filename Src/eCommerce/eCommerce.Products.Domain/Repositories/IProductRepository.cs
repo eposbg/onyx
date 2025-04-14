@@ -4,6 +4,5 @@ namespace eCommerce.Products.Domain.Repositories;
 
 public interface IProductRepository
 {
-    IEnumerable<Product> GetAll();
-    IEnumerable<Product> GetByColor(string color);
+    IQueryable<Product> GetAll();
 }

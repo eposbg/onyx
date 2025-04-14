@@ -1,5 +1,6 @@
 ﻿using eCommerce.Products.Application.DTOs;
 using eCommerce.Products.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Products.Application.Services.Product;
 
@@ -12,13 +13,27 @@ public class ProductService: IProductService
         _productRepository = productRepository;
     }
 
-    public IEnumerable<ProductDto> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<ProductDto>> GetAllAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var allProducts = await _productRepository.GetAll().ToListAsync(cancellationToken);
+        return allProducts.Select(x=>new ProductDto
+        {
+            Name = x.Name,
+            Color = x.Color
+        });
     }
 
-    public IEnumerable<ProductDto> GetProductsByColor(string color)
+    public async Task<IEnumerable<ProductDto>> GetProductsByColor(string color, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var allProducts = await _productRepository
+            .GetAll()
+            .Where(p=>p.Color == color)
+            .ToListAsync(cancellationToken);
+        
+        return allProducts.Where(x=>x.Color == color).Select(x=>new ProductDto
+        {
+            Name = x.Name,
+            Color = x.Color
+        });
     }
 }

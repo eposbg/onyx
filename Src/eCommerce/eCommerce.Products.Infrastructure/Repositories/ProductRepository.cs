@@ -1,17 +1,15 @@
 ﻿using eCommerce.Products.Domain.Entries;
 using eCommerce.Products.Domain.Repositories;
+using eCommerce.Products.Infrastructure.Persistence;
 
 namespace eCommerce.Products.Infrastructure.Repositories;
 
-public class ProductRepository: IProductRepository
+public class ProductRepository(ProductsContext context) : IProductRepository
 {
-    public IEnumerable<Product> GetAll()
+    public IQueryable<Product> GetAll()
     {
-        throw new NotImplementedException();
+        return context.Products.AsQueryable<Product>();
     }
 
-    public IEnumerable<Product> GetByColor(string color)
-    {
-        throw new NotImplementedException();
-    }
+  
 }

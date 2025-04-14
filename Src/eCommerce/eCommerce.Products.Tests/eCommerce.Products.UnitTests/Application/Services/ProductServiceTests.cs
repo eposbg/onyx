@@ -18,18 +18,18 @@ public class ProductServiceTests
     }
     
     [Fact]
-    public void GetAll_ShouldReturnAllProducts()
+    public async Task GetAll_ShouldReturnAllProducts()
     {
         // Arrange
         var products = new List<Product>
         {
             new() { Id = 1, Name = "Shirt", Color = "Red" },
             new() { Id = 2, Name = "Shoes", Color = "Blue" }
-        };
+        }.AsQueryable();
         _repoMock.Setup(r => r.GetAll()).Returns(products);
 
         // Act
-        var result = _service.GetAllAsync(CancellationToken.None);
+        var result = await _service.GetAllAsync(CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(2);
@@ -37,19 +37,20 @@ public class ProductServiceTests
     }
     
     [Fact]
-    public void GetProductsByColor_ShouldReturnFilteredProducts()
+    public async Task GetProductsByColor_ShouldReturnFilteredProducts()
     {
         // Arrange
         var color = "Red";
         var products = new List<Product>
         {
-            new Product { Id = 1, Name = "Shirt", Color = "Red" },
-            new Product { Id = 2, Name = "Hat", Color = "Red" }
-        };
-        _repoMock.Setup(r => r.GetByColor(color)).Returns(products);
+            new() { Id = 1, Name = "Shirt", Color = "Red" },
+            new() { Id = 2, Name = "Shoes", Color = "Blue" }
+        }.AsQueryable();
+        
+        _repoMock.Setup(r => r.GetAll()).Returns(products);
 
         // Act
-        var result = _service.GetProductsByColor(color);
+        var result = await _service.GetProductsByColor(color, CancellationToken.None);
 
         // Assert
         result.Should().OnlyContain(p => p.Color == "Red");

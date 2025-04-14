@@ -4,10 +4,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using eCommerce.Products.Application.Services.Product;
 using eCommerce.Products.Domain.Repositories;
+using eCommerce.Products.Infrastructure.Persistence;
 using eCommerce.Products.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ProductsContext>(options =>
+    options.UseInMemoryDatabase("ProductsDb"));
 
 var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
 builder.Services.Configure<JwtSettings>(jwtSettingsSection);
@@ -15,6 +21,7 @@ builder.Services.AddSingleton(jwtSettingsSection.Get<JwtSettings>()!);
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

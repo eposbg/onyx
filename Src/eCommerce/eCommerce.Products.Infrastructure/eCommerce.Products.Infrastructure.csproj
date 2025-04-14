@@ -10,4 +10,8 @@
     <ProjectReference Include="..\eCommerce.Products.Domain\eCommerce.Products.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.15" />
+  </ItemGroup>
+
 </Project>
