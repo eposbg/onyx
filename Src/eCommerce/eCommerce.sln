@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35806.99 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Products", "eCommerce.Products\eCommerce.Products.csproj", "{1B807A61-CF3C-4CEC-8E20-3834B792731F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Api", "eCommerce.Api\eCommerce.Api.csproj", "{1B807A61-CF3C-4CEC-8E20-3834B792731F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Products.Application", "eCommerce.Products.Application\eCommerce.Products.Application.csproj", "{695B3A8D-6779-43F3-B130-735F9FEDB1BE}"
 EndProject
@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{C3DBB633-8827-4FEB-B0A5-C0115C9F3F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Products.ApiTests", "eCommerce.Products.Tests\eCommerce.Products.ApiTests\eCommerce.Products.ApiTests.csproj", "{4EAEDA2D-A2AA-4318-9F9E-36B4BF91A8C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Products.UnitTests", "eCommerce.Products.Tests\eCommerce.Products.UnitTests\eCommerce.Products.UnitTests.csproj", "{4EAEDA2D-A2AA-4318-9F9E-36B4BF91A8C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Products.Application.Tests", "eCommerce.Products.Tests\eCommerce.Products.Application.Tests\eCommerce.Products.Application.Tests.csproj", "{43AF88E0-092A-43C2-82F3-A7506FCF09FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Products.IntegrationTests", "eCommerce.Products.Tests\eCommerce.Products.IntegrationTests\eCommerce.Products.IntegrationTests.csproj", "{43AF88E0-092A-43C2-82F3-A7506FCF09FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
