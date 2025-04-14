@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>e6f83be9-84eb-4526-b552-dcfb2040d886</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>eCommerce.Products</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\eCommerce.Products.Application\eCommerce.Products.Application.csproj" />
     <ProjectReference Include="..\eCommerce.Products.Domain\eCommerce.Products.Domain.csproj" />
+    <ProjectReference Include="..\eCommerce.Products.Infrastructure\eCommerce.Products.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
